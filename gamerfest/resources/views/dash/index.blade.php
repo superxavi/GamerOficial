@@ -1,3 +1,22 @@
+<?php    
+    
+    use App\Models\Categoria;
+    $categorias=Categoria::all()->count()
+    
+?>
+<?php
+use App\Models\Jugadore;
+$Numju=Jugadore::all()->count()
+?>
+<?php
+use App\Models\Equipo;
+$Numeq=Equipo::all()->count()
+?>
+
+
+
+
+
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -8,7 +27,8 @@
 @stop
 
 @section('content')
-<p>Estadistica de Dasboar</p>
+
+<p>Datos Generales</p>
 <!-- creamos una fila -->
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <div class="container-fluid py-4">
@@ -19,13 +39,17 @@
                     <div class="card-header p-3 pt-2">
                         <div
                             class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                            <i class="material-icons opacity-10">Ganancias</i>
+                            <i class="material-icons opacity-10">Categorias</i>
                         </div>
 
 
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Hoy</p>
-                            <h4 class="mb-0"></h4>
+                            <p class="text-sm mb-0 text-capitalize">Disponibles</p>
+                            <h4 class="mb-0">
+
+                                {{$categorias}}
+
+                            </h4>
                         </div>
 
                     </div>
@@ -43,16 +67,17 @@
                     <div class="card-header p-3 pt-2">
                         <div
                             class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                            <i class="material-icons opacity-10">Personas</i>
+                            <i class="material-icons opacity-10">Jugadores</i>
                         </div>
                         <div class="text-end pt-1">
                             <p class="text-sm mb-0 text-capitalize"> Total de registrados</p>
-                            <h4 class="mb-0">20</h4>
+                            <h4 class="mb-0">{{$Numju}}</h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>de incremento este mes
+                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>de incremento
+                            este mes
                         </p>
                     </div>
                 </div>
@@ -66,12 +91,12 @@
                         </div>
                         <div class="text-end pt-1">
                             <p class="text-sm mb-0 text-capitalize">Equipos</p>
-                            <h4 class="mb-0">3</h4>
+                            <h4 class="mb-0">{{$Numeq}}</h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">inscribete %</span>
+                        <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">Total</span>
                         </p>
                     </div>
                 </div>
@@ -121,9 +146,17 @@
                 <div class="card z-index-2  ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                         <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                            Mas votado
                             <div class="chart">
-                                <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
-                            </div>
+                                
+
+                               <img src="./img/Mario.png"/>
+                                <canvas id="chart-line" class="chart-canvas" height="170">
+
+
+                                </canvas>
+                                                    </div>
+                            :)
                         </div>
                     </div>
                     <div class="card-body">
@@ -183,7 +216,7 @@
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Miembros</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Avatar</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
