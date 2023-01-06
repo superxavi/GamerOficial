@@ -34,44 +34,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
 					@auth()
-                    <ul class="navbar-nav mr-auto">
-						<!--Nav Bar Hooks - Do not delete!!-->
-						<li class="nav-item">
-                            <a href="{{ url('/videojuegos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Videojuegos</a> 
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/partida_indiv') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Partida_indiv</a> 
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/partida_grupal') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Partida_grupal</a> 
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/jugadores') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Jugadores</a> 
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/insc_individual') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Insc_individual</a> 
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/insc_grupo') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Insc_grupo</a> 
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/horarios') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Horarios</a> 
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/evento') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Evento</a> 
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/equipo') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Equipo</a> 
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/categoria_juego') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Categoria_juego</a> 
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/aulas') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Aulas</a> 
-                        </li>
-                    </ul>
 					@endauth()
-					
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -81,7 +45,7 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                            
+
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
