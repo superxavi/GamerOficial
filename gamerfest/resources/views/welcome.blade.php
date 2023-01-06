@@ -67,7 +67,7 @@
 
     <!-- About Start -->
     <div class="col-md-4 mb-5">
-                        <h5 class="text-primary mb-4">Mapa</h5>
+                        <h5 class="text-primary mb-4">Mapa ESPE Latacunga</h5>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.212023845016!2d-78.5882917497373!3d-0.99887029926778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d4639e3fb9755f%3A0x22fe7f63301b5fee!2sESPE%20-%20Campus%20Belisario%20Quevedo!5e0!3m2!1ses!2sec!4v1671157534952!5m2!1ses!2sec" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
     <!-- About End -->
