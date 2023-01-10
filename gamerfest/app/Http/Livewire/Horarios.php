@@ -5,29 +5,37 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Horario;
+use App\Models\Videojuego;
+use App\Models\Aula;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class Horarios extends Component
 {
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $ID_HOR, $ID_VDJ, $ID_AUL, $TIEMPO_INICIO_HOR, $TIEMPO_FIN_HOR, $FECHA_HOR, $OBSERVACION_HOR;
+    public $selected_id, $keyWord, $videojuego_id, $aula_id, $tiempo_inicio, $tiempo_final, $fecha, $observacion;
     public $updateMode = false;
 
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
+        $videojuegos = Videojuego::all();
+        $aulas = Aula::all();
         return view('livewire.horarios.view', [
-            'horarios' => Horario::latest()
-						->orWhere('ID_HOR', 'LIKE', $keyWord)
-						->orWhere('ID_VDJ', 'LIKE', $keyWord)
-						->orWhere('ID_AUL', 'LIKE', $keyWord)
-						->orWhere('TIEMPO_INICIO_HOR', 'LIKE', $keyWord)
-						->orWhere('TIEMPO_FIN_HOR', 'LIKE', $keyWord)
-						->orWhere('FECHA_HOR', 'LIKE', $keyWord)
-						->orWhere('OBSERVACION_HOR', 'LIKE', $keyWord)
+            'horarios' => Horario::with('videojuego')->with('aula')
+                        ->whereHas('videojuego', fn ($query) => 
+                        $query->where('nombre', 'LIKE', $keyWord))
+
+						->whereHas('aula', fn ($query) => 
+                        $query->where('nombre_aula', 'LIKE', $keyWord))
+                        
+						->orWhere('tiempo_inicio', 'LIKE', $keyWord)
+						->orWhere('tiempo_final', 'LIKE', $keyWord)
+						->orWhere('fecha', 'LIKE', $keyWord)
+						->orWhere('observacion', 'LIKE', $keyWord)
 						->paginate(10),
-        ]);
+        ],compact('videojuegos', 'aulas'));
     }
 	
     public function cancel()
@@ -38,29 +46,32 @@ class Horarios extends Component
 	
     private function resetInput()
     {		
-		$this->ID_HOR = null;
-		$this->ID_VDJ = null;
-		$this->ID_AUL = null;
-		$this->TIEMPO_INICIO_HOR = null;
-		$this->TIEMPO_FIN_HOR = null;
-		$this->FECHA_HOR = null;
-		$this->OBSERVACION_HOR = null;
+		$this->videojuego_id = null;
+		$this->aula_id = null;
+		$this->tiempo_inicio = null;
+		$this->tiempo_final = null;
+		$this->fecha = null;
+		$this->observacion = null;
     }
 
     public function store()
     {
         $this->validate([
-		'ID_HOR' => 'required',
+		'videojuego_id' => 'required',
+		'aula_id' => 'required',
+		'tiempo_inicio' => 'required',
+		'tiempo_final' => 'required',
+		'fecha' => 'required',
+		'observacion' => 'required',
         ]);
 
         Horario::create([ 
-			'ID_HOR' => $this-> ID_HOR,
-			'ID_VDJ' => $this-> ID_VDJ,
-			'ID_AUL' => $this-> ID_AUL,
-			'TIEMPO_INICIO_HOR' => $this-> TIEMPO_INICIO_HOR,
-			'TIEMPO_FIN_HOR' => $this-> TIEMPO_FIN_HOR,
-			'FECHA_HOR' => $this-> FECHA_HOR,
-			'OBSERVACION_HOR' => $this-> OBSERVACION_HOR
+			'videojuego_id' => $this-> videojuego_id,
+			'aula_id' => $this-> aula_id,
+			'tiempo_inicio' => $this-> tiempo_inicio,
+			'tiempo_final' => $this-> tiempo_final,
+			'fecha' => $this-> fecha,
+			'observacion' => $this-> observacion
         ]);
         
         $this->resetInput();
@@ -73,13 +84,12 @@ class Horarios extends Component
         $record = Horario::findOrFail($id);
 
         $this->selected_id = $id; 
-		$this->ID_HOR = $record-> ID_HOR;
-		$this->ID_VDJ = $record-> ID_VDJ;
-		$this->ID_AUL = $record-> ID_AUL;
-		$this->TIEMPO_INICIO_HOR = $record-> TIEMPO_INICIO_HOR;
-		$this->TIEMPO_FIN_HOR = $record-> TIEMPO_FIN_HOR;
-		$this->FECHA_HOR = $record-> FECHA_HOR;
-		$this->OBSERVACION_HOR = $record-> OBSERVACION_HOR;
+		$this->videojuego_id = $record-> videojuego_id;
+		$this->aula_id = $record-> aula_id;
+		$this->tiempo_inicio = $record-> tiempo_inicio;
+		$this->tiempo_final = $record-> tiempo_final;
+		$this->fecha = $record-> fecha;
+		$this->observacion = $record-> observacion;
 		
         $this->updateMode = true;
     }
@@ -87,19 +97,23 @@ class Horarios extends Component
     public function update()
     {
         $this->validate([
-		'ID_HOR' => 'required',
+		'videojuego_id' => 'required',
+		'aula_id' => 'required',
+		'tiempo_inicio' => 'required',
+		'tiempo_final' => 'required',
+		'fecha' => 'required',
+		'observacion' => 'required',
         ]);
 
         if ($this->selected_id) {
 			$record = Horario::find($this->selected_id);
             $record->update([ 
-			'ID_HOR' => $this-> ID_HOR,
-			'ID_VDJ' => $this-> ID_VDJ,
-			'ID_AUL' => $this-> ID_AUL,
-			'TIEMPO_INICIO_HOR' => $this-> TIEMPO_INICIO_HOR,
-			'TIEMPO_FIN_HOR' => $this-> TIEMPO_FIN_HOR,
-			'FECHA_HOR' => $this-> FECHA_HOR,
-			'OBSERVACION_HOR' => $this-> OBSERVACION_HOR
+			'videojuego_id' => $this-> videojuego_id,
+			'aula_id' => $this-> aula_id,
+			'tiempo_inicio' => $this-> tiempo_inicio,
+			'tiempo_final' => $this-> tiempo_final,
+			'fecha' => $this-> fecha,
+			'observacion' => $this-> observacion
             ]);
 
             $this->resetInput();
@@ -114,5 +128,12 @@ class Horarios extends Component
             $record = Horario::where('id', $id);
             $record->delete();
         }
+    }
+
+    public function horariosPDF()
+    {
+        $horarios = Horario::all();
+        $pdf = PDF::loadView('pdf.horarios', compact('horarios'))->setPaper('a4');
+        return $pdf->stream();
     }
 }

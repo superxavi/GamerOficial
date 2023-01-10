@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Welcome');
 });
 
 Route::middleware([
@@ -23,19 +23,28 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+        return view('dash.index');
+    })->name('dash');
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 //Route Hooks - Do not delete//
-	Route::view('videojuegos', 'livewire.videojuegos.index')->middleware('auth');
-	Route::view('partida_indiv', 'livewire.partida_indiv.index')->middleware('auth');
-	Route::view('partida_grupal', 'livewire.partida_grupal.index')->middleware('auth');
+	Route::view('inscripcionins', 'livewire.inscripcionins.index')->middleware('auth');
+	Route::view('inscripciongrs', 'livewire.inscripciongrs.index')->middleware('auth');
+	Route::view('partidains', 'livewire.partidains.index')->middleware('auth');
+	Route::view('partidagrs', 'livewire.partidagrs.index')->middleware('auth');
 	Route::view('jugadores', 'livewire.jugadores.index')->middleware('auth');
-	Route::view('insc_individual', 'livewire.insc_individual.index')->middleware('auth');
-	Route::view('insc_grupo', 'livewire.insc_grupo.index')->middleware('auth');
+	Route::view('equipos', 'livewire.equipos.index')->middleware('auth');
 	Route::view('horarios', 'livewire.horarios.index')->middleware('auth');
-	Route::view('evento', 'livewire.evento.index')->middleware('auth');
-	Route::view('equipo', 'livewire.equipo.index')->middleware('auth');
-	Route::view('categoria_juego', 'livewire.categoria_juego.index')->middleware('auth');
 	Route::view('aulas', 'livewire.aulas.index')->middleware('auth');
+	Route::view('videojuegos', 'livewire.videojuegos.index')->middleware('auth');
+	Route::view('categorias', 'livewire.categorias.index')->middleware('auth');
+//Reportes
+    Route::get('/jugadores-pdf', [\App\Http\Livewire\Jugadores::class, 'jugadoresPDF']);
+	Route::get('/horarios-pdf', [\App\Http\Livewire\Horarios::class, 'horariosPDF']);
+	Route::get('/inscripcionins-pdf', [\App\Http\Livewire\Inscripcionins::class, 'inscripcioninPDF']);
+	Route::get('/inscripciongrs-pdf', [\App\Http\Livewire\Inscripciongrs::class, 'inscripciongrPDF']);
+	Route::get('/partidagrs-pdf', [\App\Http\Livewire\Partidagrs::class, 'partidagrPDF']);

@@ -13,14 +13,14 @@ class Aula extends Model
 
     protected $table = 'aulas';
 
-    protected $fillable = ['ID_AUL','NOMBRE_AUL','EDIFICIO_AUL','DIRECCION_AUL','OBSERVACION_AUL'];
+    protected $fillable = ['nombre_aula','edificio','direccion','observacion'];
 	
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function horarios()
     {
-        return $this->hasMany('App\Models\Horario', 'ID_AUL', 'ID_AUL');
+        return $this->hasMany('App\Models\Horario', 'aula_id', 'id');
     }
     
 }

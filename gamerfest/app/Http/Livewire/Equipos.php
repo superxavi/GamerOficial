@@ -11,7 +11,7 @@ class Equipos extends Component
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $ID_EQU, $NOMBRE_EQU, $OBSERVACION_EQU;
+    public $selected_id, $keyWord, $nombre_equipo, $observacion;
     public $updateMode = false;
 
     public function render()
@@ -19,9 +19,8 @@ class Equipos extends Component
 		$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.equipos.view', [
             'equipos' => Equipo::latest()
-						->orWhere('ID_EQU', 'LIKE', $keyWord)
-						->orWhere('NOMBRE_EQU', 'LIKE', $keyWord)
-						->orWhere('OBSERVACION_EQU', 'LIKE', $keyWord)
+						->orWhere('nombre_equipo', 'LIKE', $keyWord)
+						->orWhere('observacion', 'LIKE', $keyWord)
 						->paginate(10),
         ]);
     }
@@ -34,21 +33,20 @@ class Equipos extends Component
 	
     private function resetInput()
     {		
-		$this->ID_EQU = null;
-		$this->NOMBRE_EQU = null;
-		$this->OBSERVACION_EQU = null;
+		$this->nombre_equipo = null;
+		$this->observacion = null;
     }
 
     public function store()
     {
         $this->validate([
-		'ID_EQU' => 'required',
+		'nombre_equipo' => 'required',
+		'observacion' => 'required',
         ]);
 
         Equipo::create([ 
-			'ID_EQU' => $this-> ID_EQU,
-			'NOMBRE_EQU' => $this-> NOMBRE_EQU,
-			'OBSERVACION_EQU' => $this-> OBSERVACION_EQU
+			'nombre_equipo' => $this-> nombre_equipo,
+			'observacion' => $this-> observacion
         ]);
         
         $this->resetInput();
@@ -61,9 +59,8 @@ class Equipos extends Component
         $record = Equipo::findOrFail($id);
 
         $this->selected_id = $id; 
-		$this->ID_EQU = $record-> ID_EQU;
-		$this->NOMBRE_EQU = $record-> NOMBRE_EQU;
-		$this->OBSERVACION_EQU = $record-> OBSERVACION_EQU;
+		$this->nombre_equipo = $record-> nombre_equipo;
+		$this->observacion = $record-> observacion;
 		
         $this->updateMode = true;
     }
@@ -71,15 +68,15 @@ class Equipos extends Component
     public function update()
     {
         $this->validate([
-		'ID_EQU' => 'required',
+		'nombre_equipo' => 'required',
+		'observacion' => 'required',
         ]);
 
         if ($this->selected_id) {
 			$record = Equipo::find($this->selected_id);
             $record->update([ 
-			'ID_EQU' => $this-> ID_EQU,
-			'NOMBRE_EQU' => $this-> NOMBRE_EQU,
-			'OBSERVACION_EQU' => $this-> OBSERVACION_EQU
+			'nombre_equipo' => $this-> nombre_equipo,
+			'observacion' => $this-> observacion
             ]);
 
             $this->resetInput();

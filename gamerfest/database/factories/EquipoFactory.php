@@ -13,9 +13,8 @@ class EquipoFactory extends Factory
     public function definition()
     {
         return [
-			'ID_EQU' => $this->faker->name,
-			'NOMBRE_EQU' => $this->faker->name,
-			'OBSERVACION_EQU' => $this->faker->name,
+			'nombre_equipo' => $this->faker->name,
+			'observacion' => $this->faker->name,
         ];
     }
 }

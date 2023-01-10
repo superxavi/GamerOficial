@@ -13,14 +13,14 @@ class Horario extends Model
 
     protected $table = 'horarios';
 
-    protected $fillable = ['ID_HOR','ID_VDJ','ID_AUL','TIEMPO_INICIO_HOR','TIEMPO_FIN_HOR','FECHA_HOR','OBSERVACION_HOR'];
+    protected $fillable = ['videojuego_id','aula_id','tiempo_inicio','tiempo_final','fecha','observacion'];
 	
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function aula()
     {
-        return $this->hasOne('App\Models\Aula', 'ID_AUL', 'ID_AUL');
+        return $this->hasOne('App\Models\Aula', 'id', 'aula_id');
     }
     
     /**
@@ -28,7 +28,7 @@ class Horario extends Model
      */
     public function videojuego()
     {
-        return $this->hasOne('App\Models\Videojuego', 'ID_VDJ', 'ID_VDJ');
+        return $this->hasOne('App\Models\Videojuego', 'id', 'videojuego_id');
     }
     
 }

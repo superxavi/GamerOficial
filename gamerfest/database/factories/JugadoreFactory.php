@@ -13,13 +13,12 @@ class JugadoreFactory extends Factory
     public function definition()
     {
         return [
-			'ID_JUG' => $this->faker->name,
-			'ID_EQU' => $this->faker->name,
-			'NOMBRE_JUG' => $this->faker->name,
-			'CEDULA_JUG' => $this->faker->name,
-			'TELEFONO_JUG' => $this->faker->name,
-			'CORREO_JUG' => $this->faker->name,
-			'OBSERVACION_JUG' => $this->faker->name,
+			'nombre' => $this->faker->name,
+			'cedula' => $this->faker->name,
+			'telefono' => $this->faker->name,
+			'correo' => $this->faker->name,
+			'equipo_id' => $this->faker->name,
+			'observacion' => $this->faker->name,
         ];
     }
 }

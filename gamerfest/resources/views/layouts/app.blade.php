@@ -22,10 +22,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <img src="/img/gamefest.png" class="rounded float-start" width="100">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -34,6 +34,39 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
 					@auth()
+                    <ul class="navbar-nav mr-auto">
+						<!--Nav Bar Hooks - Do not delete!!-->
+						<li class="nav-item">
+                            <a href="{{ url('/inscripcionins') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Inscripcionins</a>
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/inscripciongrs') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Inscripciongrs</a>
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/partidains') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Partidains</a>
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/partidagrs') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Partidagrs</a>
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/jugadores') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Jugadores</a>
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/equipos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Equipos</a>
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/horarios') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Horarios</a>
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/aulas') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Aulas</a>
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/videojuegos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Videojuegos</a>
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/categorias') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Categorias</a>
+                        </li>
+                    </ul>
 					@endauth()
 
                     <!-- Right Side Of Navbar -->
@@ -42,13 +75,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Ingreso') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
                                 </li>
                             @endif
                         @else

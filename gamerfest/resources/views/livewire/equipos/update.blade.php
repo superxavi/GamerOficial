@@ -12,16 +12,12 @@
                 <form>
 					<input type="hidden" wire:model="selected_id">
             <div class="form-group">
-                <label for="ID_EQU"></label>
-                <input wire:model="ID_EQU" type="text" class="form-control" id="ID_EQU" placeholder="Id Equ">@error('ID_EQU') <span class="error text-danger">{{ $message }}</span> @enderror
+                <label for="nombre_equipo"></label>
+                <input wire:model="nombre_equipo" type="text" class="form-control" id="nombre_equipo" placeholder="Nombre Equipo">@error('nombre_equipo') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="NOMBRE_EQU"></label>
-                <input wire:model="NOMBRE_EQU" type="text" class="form-control" id="NOMBRE_EQU" placeholder="Nombre Equ">@error('NOMBRE_EQU') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
-                <label for="OBSERVACION_EQU"></label>
-                <input wire:model="OBSERVACION_EQU" type="text" class="form-control" id="OBSERVACION_EQU" placeholder="Observacion Equ">@error('OBSERVACION_EQU') <span class="error text-danger">{{ $message }}</span> @enderror
+                <label for="observacion"></label>
+                <input wire:model="observacion" type="text" class="form-control" id="observacion" placeholder="Observacion">@error('observacion') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
                 </form>

@@ -13,11 +13,10 @@ class AulaFactory extends Factory
     public function definition()
     {
         return [
-			'ID_AUL' => $this->faker->name,
-			'NOMBRE_AUL' => $this->faker->name,
-			'EDIFICIO_AUL' => $this->faker->name,
-			'DIRECCION_AUL' => $this->faker->name,
-			'OBSERVACION_AUL' => $this->faker->name,
+			'nombre_aula' => $this->faker->name,
+			'edificio' => $this->faker->name,
+			'direccion' => $this->faker->name,
+			'observacion' => $this->faker->name,
         ];
     }
 }

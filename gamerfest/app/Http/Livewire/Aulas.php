@@ -11,7 +11,7 @@ class Aulas extends Component
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $ID_AUL, $NOMBRE_AUL, $EDIFICIO_AUL, $DIRECCION_AUL, $OBSERVACION_AUL;
+    public $selected_id, $keyWord, $nombre_aula, $edificio, $direccion, $observacion;
     public $updateMode = false;
 
     public function render()
@@ -19,11 +19,10 @@ class Aulas extends Component
 		$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.aulas.view', [
             'aulas' => Aula::latest()
-						->orWhere('ID_AUL', 'LIKE', $keyWord)
-						->orWhere('NOMBRE_AUL', 'LIKE', $keyWord)
-						->orWhere('EDIFICIO_AUL', 'LIKE', $keyWord)
-						->orWhere('DIRECCION_AUL', 'LIKE', $keyWord)
-						->orWhere('OBSERVACION_AUL', 'LIKE', $keyWord)
+						->orWhere('nombre_aula', 'LIKE', $keyWord)
+						->orWhere('edificio', 'LIKE', $keyWord)
+						->orWhere('direccion', 'LIKE', $keyWord)
+						->orWhere('observacion', 'LIKE', $keyWord)
 						->paginate(10),
         ]);
     }
@@ -36,25 +35,26 @@ class Aulas extends Component
 	
     private function resetInput()
     {		
-		$this->ID_AUL = null;
-		$this->NOMBRE_AUL = null;
-		$this->EDIFICIO_AUL = null;
-		$this->DIRECCION_AUL = null;
-		$this->OBSERVACION_AUL = null;
+		$this->nombre_aula = null;
+		$this->edificio = null;
+		$this->direccion = null;
+		$this->observacion = null;
     }
 
     public function store()
     {
         $this->validate([
-		'ID_AUL' => 'required',
+		'nombre_aula' => 'required',
+		'edificio' => 'required',
+		'direccion' => 'required',
+		'observacion' => 'required',
         ]);
 
         Aula::create([ 
-			'ID_AUL' => $this-> ID_AUL,
-			'NOMBRE_AUL' => $this-> NOMBRE_AUL,
-			'EDIFICIO_AUL' => $this-> EDIFICIO_AUL,
-			'DIRECCION_AUL' => $this-> DIRECCION_AUL,
-			'OBSERVACION_AUL' => $this-> OBSERVACION_AUL
+			'nombre_aula' => $this-> nombre_aula,
+			'edificio' => $this-> edificio,
+			'direccion' => $this-> direccion,
+			'observacion' => $this-> observacion
         ]);
         
         $this->resetInput();
@@ -67,11 +67,10 @@ class Aulas extends Component
         $record = Aula::findOrFail($id);
 
         $this->selected_id = $id; 
-		$this->ID_AUL = $record-> ID_AUL;
-		$this->NOMBRE_AUL = $record-> NOMBRE_AUL;
-		$this->EDIFICIO_AUL = $record-> EDIFICIO_AUL;
-		$this->DIRECCION_AUL = $record-> DIRECCION_AUL;
-		$this->OBSERVACION_AUL = $record-> OBSERVACION_AUL;
+		$this->nombre_aula = $record-> nombre_aula;
+		$this->edificio = $record-> edificio;
+		$this->direccion = $record-> direccion;
+		$this->observacion = $record-> observacion;
 		
         $this->updateMode = true;
     }
@@ -79,17 +78,19 @@ class Aulas extends Component
     public function update()
     {
         $this->validate([
-		'ID_AUL' => 'required',
+		'nombre_aula' => 'required',
+		'edificio' => 'required',
+		'direccion' => 'required',
+		'observacion' => 'required',
         ]);
 
         if ($this->selected_id) {
 			$record = Aula::find($this->selected_id);
             $record->update([ 
-			'ID_AUL' => $this-> ID_AUL,
-			'NOMBRE_AUL' => $this-> NOMBRE_AUL,
-			'EDIFICIO_AUL' => $this-> EDIFICIO_AUL,
-			'DIRECCION_AUL' => $this-> DIRECCION_AUL,
-			'OBSERVACION_AUL' => $this-> OBSERVACION_AUL
+			'nombre_aula' => $this-> nombre_aula,
+			'edificio' => $this-> edificio,
+			'direccion' => $this-> direccion,
+			'observacion' => $this-> observacion
             ]);
 
             $this->resetInput();

@@ -11,32 +11,38 @@
            <div class="modal-body">
 				<form>
             <div class="form-group">
-                <label for="ID_HOR"></label>
-                <input wire:model="ID_HOR" type="text" class="form-control" id="ID_HOR" placeholder="Id Hor">@error('ID_HOR') <span class="error text-danger">{{ $message }}</span> @enderror
+                <label for="videojuego_id"></label>
+                <select wire:model="videojuego_id" type="text" class="form-control" id="videojuego_id"
+                <option>Seleccione</option>
+                @foreach($videojuegos as $videojuego)
+                <option value="{{$videojuego->id}}">{{$videojuego->nombre}}</option>
+                @endforeach
+                </select>
             </div>
             <div class="form-group">
-                <label for="ID_VDJ"></label>
-                <input wire:model="ID_VDJ" type="text" class="form-control" id="ID_VDJ" placeholder="Id Vdj">@error('ID_VDJ') <span class="error text-danger">{{ $message }}</span> @enderror
+                <label for="aula_id"></label>
+                <select wire:model="aula_id" type="text" class="form-control" id="aula_id"
+                <option>Seleccione</option>
+                @foreach($aulas as $aula)
+                <option value="{{$aula->id}}">{{$aula->nombre_aula}}</option>
+                @endforeach
+                </select>
             </div>
             <div class="form-group">
-                <label for="ID_AUL"></label>
-                <input wire:model="ID_AUL" type="text" class="form-control" id="ID_AUL" placeholder="Id Aul">@error('ID_AUL') <span class="error text-danger">{{ $message }}</span> @enderror
+                <label for="tiempo_inicio"></label>
+                <input wire:model="tiempo_inicio" type="text" class="form-control" id="tiempo_inicio" placeholder="Tiempo Inicio">@error('tiempo_inicio') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="TIEMPO_INICIO_HOR"></label>
-                <input wire:model="TIEMPO_INICIO_HOR" type="text" class="form-control" id="TIEMPO_INICIO_HOR" placeholder="Tiempo Inicio Hor">@error('TIEMPO_INICIO_HOR') <span class="error text-danger">{{ $message }}</span> @enderror
+                <label for="tiempo_final"></label>
+                <input wire:model="tiempo_final" type="text" class="form-control" id="tiempo_final" placeholder="Tiempo Final">@error('tiempo_final') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="TIEMPO_FIN_HOR"></label>
-                <input wire:model="TIEMPO_FIN_HOR" type="text" class="form-control" id="TIEMPO_FIN_HOR" placeholder="Tiempo Fin Hor">@error('TIEMPO_FIN_HOR') <span class="error text-danger">{{ $message }}</span> @enderror
+                <label for="fecha"></label>
+                <input wire:model="fecha" type="text" class="form-control" id="fecha" placeholder="Fecha">@error('fecha') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="FECHA_HOR"></label>
-                <input wire:model="FECHA_HOR" type="text" class="form-control" id="FECHA_HOR" placeholder="Fecha Hor">@error('FECHA_HOR') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
-                <label for="OBSERVACION_HOR"></label>
-                <input wire:model="OBSERVACION_HOR" type="text" class="form-control" id="OBSERVACION_HOR" placeholder="Observacion Hor">@error('OBSERVACION_HOR') <span class="error text-danger">{{ $message }}</span> @enderror
+                <label for="observacion"></label>
+                <input wire:model="observacion" type="text" class="form-control" id="observacion" placeholder="Observacion">@error('observacion') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
                 </form>

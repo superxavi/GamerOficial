@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'GAMERFEST',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>Grupo 5</b>_GamerFest',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>GAMERFEST</b>',
+    'logo_img' => 'https://www.publicdomainpictures.net/pictures/270000/velka/gamepad-gamer-hand-videogame-g.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -130,10 +130,10 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
-    'usermenu_desc' => false,
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-dark',
+    'usermenu_image' => true,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => false,
 
     /*
@@ -151,9 +151,9 @@ return [
     'layout_topnav' => null,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
-    'layout_dark_mode' => null,
+    'layout_dark_mode' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -194,7 +194,7 @@ return [
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar navbar-dark bg-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => false,
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -291,9 +291,10 @@ return [
 
     'menu' => [
         // Navbar items:
+        // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'buscar',
+            ' type'         => 'navbar-search',
+            'text'         => 'search',
             'topnav_right' => true,
         ],
         [
@@ -302,119 +303,86 @@ return [
         ],
 
         // Sidebar items:
-        
-        
-        ['header' => 'Servicios de Juego'],
-
+        [
+            'type' => 'sidebar-menu-search',
+            'text' => 'search',
+        ],
+        [
+            'text' => 'blog',
+            'url'  => 'admin/blog',
+            'can'  => 'manage-blog',
+        ],
+        [
+            'text'        => 'Dashboard',
+            'url'         => 'http://127.0.0.1:8000/dashboard',
+            'icon'        => 'fas fa-swatchbook',
+            //'label'       => "",
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'Actividades grupales',
+            'icon' => 'fas fa-tags',
+            'submenu'=> [
+                [
+                    'text' => 'Equipos',
+                    'url'  => 'http://127.0.0.1:8000/equipos',
+                    'icon' => 'fas fa-sort-amount-down',
+                ],
+                [
+                    'text' => 'Partida Grupal',
+                    'url'  => 'http://127.0.0.1:8000/partidagrs',
+                    'icon' => 'fas fa-suitcase',
+                ],
+                [
+                    'text' => 'Inscripción grupal',
+                    'url'  => 'http://127.0.0.1:8000/inscripciongrs',
+                    'icon' => 'fa fa-users',
+                ],
+            ]
+        ],
+        [
+            'text' => 'Actividades individuales',
+            'icon' => 'fas fa-tags',
+            'submenu'=> [
+                [
+                    'text' => 'Partida Individual',
+                    'url'  => 'http://127.0.0.1:8000/partidains',
+                    'icon' => 'fas fa-thumbtack',
+                ],
+                [
+                    'text' => 'Inscripción individual',
+                    'url'  => 'http://127.0.0.1:8000/inscripcionins',
+                    'icon' => 'fa fa-child',
+                ],
+            ]
+        ],
+        ['header' => 'AJUSTES DE CUENTA'],
+        [
+            'text' => 'Categorías',
+            'url'  => 'http://127.0.0.1:8000/categorias',
+            'icon' => 'fas fa-sitemap',
+        ],
+        [
+            'text' => 'Videojuegos',
+            'url'  => 'http://127.0.0.1:8000/videojuegos',
+            'icon' => 'fa fa-gamepad',
+        ],
         [
             'text' => 'Aulas',
-            'url'  => 'aulas',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'Categoria',
-            'url'  => 'categoriaJuegos',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'Equipos',
-            'url'  => 'equipos',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'Eventos',
-            'url'  => 'eventos',
-            'icon' => 'fas fa-fw fa-user',
+            'url'  => 'http://127.0.0.1:8000/aulas',
+            'icon' => 'fas fa-shoe-prints',
         ],
         [
             'text' => 'Horarios',
-            'url'  => 'horarios',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'Inscripciones',
-            'url'  => 'inscGrupos',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'Inscripciones Individuales',
-            'url'  => 'inscIndividuals',
-            'icon' => 'fas fa-fw fa-user',
+            'url'  => 'http://127.0.0.1:8000/horarios',
+            'icon' => 'fa fa-calendar',
         ],
         [
             'text' => 'Jugadores',
-            'url'  => 'jugadores',
-            'icon' => 'fas fa-fw fa-user',
+            'url'  => 'http://127.0.0.1:8000/jugadores',
+            'icon' => 'fas fa-user-ninja',
         ],
-        [
-            'text' => ' Partidas Grupales',
-            'url'  => 'partidaGrupals',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-        'text' => ' Partidas Individuales',
-        'url'  => 'partidaIndivs',
-        'icon' => 'fas fa-fw fa-user',
-    ],
-
-
-
-        [
-            'text'    => 'Video Juegos',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-
-        ['header' => 'Opciones'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
-    ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -568,5 +536,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

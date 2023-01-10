@@ -7,7 +7,7 @@
 					<div style="display: flex; justify-content: space-between; align-items: center;">
 						<div class="float-left">
 							<h4><i class="fab fa-laravel text-info"></i>
-							Horario Listing </h4>
+							Horario</h4>
 						</div>
 						<div wire:poll.60s>
 							<code><h5>{{ now()->format('H:i:s') }} UTC</h5></code>
@@ -16,57 +16,60 @@
 						<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
 						@endif
 						<div>
-							<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Horarios">
+							<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Buscar...">
 						</div>
 						<div class="btn btn-sm btn-info" data-toggle="modal" data-target="#createDataModal">
-						<i class="fa fa-plus"></i>  Add Horarios
+						<i class="fa fa-plus"></i>  Agregar horario
 						</div>
+                        </div>
+						<a href="/horarios-pdf" class="btn btn-sm btn-danger">
+							<i class="fa fa-print"></i>  PDF
+						</a>
+					</div>
 					</div>
 				</div>
-				
+
 				<div class="card-body">
 						@include('livewire.horarios.create')
 						@include('livewire.horarios.update')
 				<div class="table-responsive">
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
-							<tr> 
-								<td>#</td> 
-								<th>Id Hor</th>
-								<th>Id Vdj</th>
-								<th>Id Aul</th>
-								<th>Tiempo Inicio Hor</th>
-								<th>Tiempo Fin Hor</th>
-								<th>Fecha Hor</th>
-								<th>Observacion Hor</th>
-								<td>ACTIONS</td>
+							<tr>
+								<td>#</td>
+								<th>Videojuego Id</th>
+								<th>Aula Id</th>
+								<th>Tiempo Inicio</th>
+								<th>Tiempo Final</th>
+								<th>Fecha</th>
+								<th>Observación</th>
+								<td>Acciones</td>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($horarios as $row)
 							<tr>
-								<td>{{ $loop->iteration }}</td> 
-								<td>{{ $row->ID_HOR }}</td>
-								<td>{{ $row->ID_VDJ }}</td>
-								<td>{{ $row->ID_AUL }}</td>
-								<td>{{ $row->TIEMPO_INICIO_HOR }}</td>
-								<td>{{ $row->TIEMPO_FIN_HOR }}</td>
-								<td>{{ $row->FECHA_HOR }}</td>
-								<td>{{ $row->OBSERVACION_HOR }}</td>
+								<td>{{ $loop->iteration }}</td>
+								<td>{{ $row->videojuego_id }}</td>
+								<td>{{ $row->aula_id }}</td>
+								<td>{{ $row->tiempo_inicio }}</td>
+								<td>{{ $row->tiempo_final }}</td>
+								<td>{{ $row->fecha }}</td>
+								<td>{{ $row->observacion }}</td>
 								<td width="90">
 								<div class="btn-group">
 									<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Actions
+									Acciones
 									</button>
 									<div class="dropdown-menu dropdown-menu-right">
-									<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a>							 
-									<a class="dropdown-item" onclick="confirm('Confirm Delete Horario id {{$row->id}}? \nDeleted Horarios cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a>   
+									<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Editar </a>
+									<a class="dropdown-item" onclick="confirm('Confirm Delete Horario id {{$row->id}}? \nDeleted Horarios cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Eliminar </a>
 									</div>
 								</div>
 								</td>
 							@endforeach
 						</tbody>
-					</table>						
+					</table>
 					{{ $horarios->links() }}
 					</div>
 				</div>

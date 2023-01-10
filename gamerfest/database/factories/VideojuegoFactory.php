@@ -13,13 +13,11 @@ class VideojuegoFactory extends Factory
     public function definition()
     {
         return [
-			'ID_VDJ' => $this->faker->name,
-			'ID_CAT' => $this->faker->name,
-			'NOMBRE_VDJ' => $this->faker->name,
-			'COMPANIA_VDJ' => $this->faker->name,
-			'PRECIO_VDJ' => $this->faker->name,
-			'DESCRIPCION_VDJ' => $this->faker->name,
-			'NUMJUGADORES_VDJ' => $this->faker->name,
+			'categoria_id' => $this->faker->name,
+			'nombre' => $this->faker->name,
+			'compania' => $this->faker->name,
+			'precio' => $this->faker->name,
+			'decripcion' => $this->faker->name,
         ];
     }
 }

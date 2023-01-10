@@ -5,29 +5,30 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Videojuego;
+use App\Models\Categoria;
 
 class Videojuegos extends Component
 {
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $ID_VDJ, $ID_CAT, $NOMBRE_VDJ, $COMPANIA_VDJ, $PRECIO_VDJ, $DESCRIPCION_VDJ, $NUMJUGADORES_VDJ;
+    public $selected_id, $keyWord, $categoria_id, $nombre, $compania, $precio, $decripcion;
     public $updateMode = false;
 
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
+        $categorias = Categoria::all();
         return view('livewire.videojuegos.view', [
-            'videojuegos' => Videojuego::latest()
-						->orWhere('ID_VDJ', 'LIKE', $keyWord)
-						->orWhere('ID_CAT', 'LIKE', $keyWord)
-						->orWhere('NOMBRE_VDJ', 'LIKE', $keyWord)
-						->orWhere('COMPANIA_VDJ', 'LIKE', $keyWord)
-						->orWhere('PRECIO_VDJ', 'LIKE', $keyWord)
-						->orWhere('DESCRIPCION_VDJ', 'LIKE', $keyWord)
-						->orWhere('NUMJUGADORES_VDJ', 'LIKE', $keyWord)
+            'videojuegos' => Videojuego::with('categoria')
+						->whereHas('categoria', fn ($query) => 
+                        $query->where('tipo', 'LIKE', $keyWord))
+						->orWhere('nombre', 'LIKE', $keyWord)
+						->orWhere('compania', 'LIKE', $keyWord)
+						->orWhere('precio', 'LIKE', $keyWord)
+						->orWhere('decripcion', 'LIKE', $keyWord)
 						->paginate(10),
-        ]);
+        ],compact('categorias'));
     }
 	
     public function cancel()
@@ -38,29 +39,29 @@ class Videojuegos extends Component
 	
     private function resetInput()
     {		
-		$this->ID_VDJ = null;
-		$this->ID_CAT = null;
-		$this->NOMBRE_VDJ = null;
-		$this->COMPANIA_VDJ = null;
-		$this->PRECIO_VDJ = null;
-		$this->DESCRIPCION_VDJ = null;
-		$this->NUMJUGADORES_VDJ = null;
+		$this->categoria_id = null;
+		$this->nombre = null;
+		$this->compania = null;
+		$this->precio = null;
+		$this->decripcion = null;
     }
 
     public function store()
     {
         $this->validate([
-		'ID_VDJ' => 'required',
+		'categoria_id' => 'required',
+		'nombre' => 'required',
+		'compania' => 'required',
+		'precio' => 'required',
+		'decripcion' => 'required',
         ]);
 
         Videojuego::create([ 
-			'ID_VDJ' => $this-> ID_VDJ,
-			'ID_CAT' => $this-> ID_CAT,
-			'NOMBRE_VDJ' => $this-> NOMBRE_VDJ,
-			'COMPANIA_VDJ' => $this-> COMPANIA_VDJ,
-			'PRECIO_VDJ' => $this-> PRECIO_VDJ,
-			'DESCRIPCION_VDJ' => $this-> DESCRIPCION_VDJ,
-			'NUMJUGADORES_VDJ' => $this-> NUMJUGADORES_VDJ
+			'categoria_id' => $this-> categoria_id,
+			'nombre' => $this-> nombre,
+			'compania' => $this-> compania,
+			'precio' => $this-> precio,
+			'decripcion' => $this-> decripcion
         ]);
         
         $this->resetInput();
@@ -73,13 +74,11 @@ class Videojuegos extends Component
         $record = Videojuego::findOrFail($id);
 
         $this->selected_id = $id; 
-		$this->ID_VDJ = $record-> ID_VDJ;
-		$this->ID_CAT = $record-> ID_CAT;
-		$this->NOMBRE_VDJ = $record-> NOMBRE_VDJ;
-		$this->COMPANIA_VDJ = $record-> COMPANIA_VDJ;
-		$this->PRECIO_VDJ = $record-> PRECIO_VDJ;
-		$this->DESCRIPCION_VDJ = $record-> DESCRIPCION_VDJ;
-		$this->NUMJUGADORES_VDJ = $record-> NUMJUGADORES_VDJ;
+		$this->categoria_id = $record-> categoria_id;
+		$this->nombre = $record-> nombre;
+		$this->compania = $record-> compania;
+		$this->precio = $record-> precio;
+		$this->decripcion = $record-> decripcion;
 		
         $this->updateMode = true;
     }
@@ -87,19 +86,21 @@ class Videojuegos extends Component
     public function update()
     {
         $this->validate([
-		'ID_VDJ' => 'required',
+		'categoria_id' => 'required',
+		'nombre' => 'required',
+		'compania' => 'required',
+		'precio' => 'required',
+		'decripcion' => 'required',
         ]);
 
         if ($this->selected_id) {
 			$record = Videojuego::find($this->selected_id);
             $record->update([ 
-			'ID_VDJ' => $this-> ID_VDJ,
-			'ID_CAT' => $this-> ID_CAT,
-			'NOMBRE_VDJ' => $this-> NOMBRE_VDJ,
-			'COMPANIA_VDJ' => $this-> COMPANIA_VDJ,
-			'PRECIO_VDJ' => $this-> PRECIO_VDJ,
-			'DESCRIPCION_VDJ' => $this-> DESCRIPCION_VDJ,
-			'NUMJUGADORES_VDJ' => $this-> NUMJUGADORES_VDJ
+			'categoria_id' => $this-> categoria_id,
+			'nombre' => $this-> nombre,
+			'compania' => $this-> compania,
+			'precio' => $this-> precio,
+			'decripcion' => $this-> decripcion
             ]);
 
             $this->resetInput();
