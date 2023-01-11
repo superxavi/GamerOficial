@@ -2,17 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categorias;
+use Illuminate\Http\Request;
+use App\Models\Categoria;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+/*use App\Models\categorias;
 use App\Http\Requests\StorecategoriasRequest;
 use App\Http\Requests\UpdatecategoriasRequest;
-
+*/
 class CategoriasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+
+    }
+    public function list()
+    {
+        return Categoria::all();
+    }
+
+
+
+
+
+
+
     public function index()
     {
         //

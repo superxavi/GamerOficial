@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => false,
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -291,8 +291,9 @@ return [
 
     'menu' => [
         // Navbar items:
+        // Navbar items:
         [
-            'type'         => 'navbar-search',
+            ' type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
         ],
@@ -318,11 +319,48 @@ return [
             //'label'       => "",
             'label_color' => 'success',
         ],
+        [
+            'text' => 'Actividades grupales',
+            'icon' => 'fas fa-tags',
+            'submenu'=> [
+                [
+                    'text' => 'Equipos',
+                    'url'  => 'http://127.0.0.1:8000/equipos',
+                    'icon' => 'fas fa-sort-amount-down',
+                ],
+                [
+                    'text' => 'Partida Grupal',
+                    'url'  => 'http://127.0.0.1:8000/partidagrs',
+                    'icon' => 'fas fa-suitcase',
+                ],
+                [
+                    'text' => 'Inscripción grupal',
+                    'url'  => 'http://127.0.0.1:8000/inscripciongrs',
+                    'icon' => 'fa fa-users',
+                ],
+            ]
+        ],
+        [
+            'text' => 'Actividades individuales',
+            'icon' => 'fas fa-tags',
+            'submenu'=> [
+                [
+                    'text' => 'Partida Individual',
+                    'url'  => 'http://127.0.0.1:8000/partidains',
+                    'icon' => 'fas fa-thumbtack',
+                ],
+                [
+                    'text' => 'Inscripción individual',
+                    'url'  => 'http://127.0.0.1:8000/inscripcionins',
+                    'icon' => 'fa fa-child',
+                ],
+            ]
+        ],
         ['header' => 'AJUSTES DE CUENTA'],
         [
             'text' => 'Categorías',
             'url'  => 'http://127.0.0.1:8000/categorias',
-            'icon' => 'fas fa-layer-group',
+            'icon' => 'fas fa-sitemap',
         ],
         [
             'text' => 'Videojuegos',
@@ -332,7 +370,7 @@ return [
         [
             'text' => 'Aulas',
             'url'  => 'http://127.0.0.1:8000/aulas',
-            'icon' => 'fas fa-house-user',
+            'icon' => 'fas fa-shoe-prints',
         ],
         [
             'text' => 'Horarios',
@@ -343,31 +381,6 @@ return [
             'text' => 'Jugadores',
             'url'  => 'http://127.0.0.1:8000/jugadores',
             'icon' => 'fas fa-user-ninja',
-        ],
-        [
-            'text' => 'Equipos',
-            'url'  => 'http://127.0.0.1:8000/equipos',
-            'icon' => 'fas fa-holly-berry',
-        ],
-        [
-            'text' => 'Partida Grupal',
-            'url'  => 'http://127.0.0.1:8000/partidagrs',
-            'icon' => 'fa fa-globe',
-        ],
-        [
-            'text' => 'Partida Individual',
-            'url'  => 'http://127.0.0.1:8000/partidains',
-            'icon' => 'fa fa-crosshairs',
-        ],
-        [
-            'text' => 'Inscripción grupal',
-            'url'  => 'http://127.0.0.1:8000/inscripciongrs',
-            'icon' => 'fa fa-users',
-        ],
-        [
-            'text' => 'Inscripcion individual',
-            'url'  => 'http://127.0.0.1:8000/inscripcionins',
-            'icon' => 'fa fa-child',
         ],
 ],
 

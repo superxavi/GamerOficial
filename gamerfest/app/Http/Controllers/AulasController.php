@@ -2,17 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Models\Aula;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+/*
 use App\Models\aulas;
 use App\Http\Requests\StoreaulasRequest;
 use App\Http\Requests\UpdateaulasRequest;
-
+*/
 class AulasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+
+    }
+    public function list()
+    {
+        return Aula::all();
+    }
+
+    public function show($id)
+    {
+        return Aula::find($id);
+    }
+
+
+
+
+
+
+
+
+
+
     public function index()
     {
         //
@@ -45,10 +70,7 @@ class AulasController extends Controller
      * @param  \App\Models\aulas  $aulas
      * @return \Illuminate\Http\Response
      */
-    public function show(aulas $aulas)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.

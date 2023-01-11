@@ -2,17 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jugadores;
+use App\Models\Jugadore;
 use App\Http\Requests\StorejugadoresRequest;
 use App\Http\Requests\UpdatejugadoresRequest;
 
 class JugadoresController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+
+    }
+    public function list()
+    {
+        return Jugadore::all();
+    }
+
+    
+
+
+
+
+
+
     public function index()
     {
         //

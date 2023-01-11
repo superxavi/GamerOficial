@@ -2,17 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\videojuegos;
-use App\Http\Requests\StorevideojuegosRequest;
-use App\Http\Requests\UpdatevideojuegosRequest;
-
+use Illuminate\Http\Request;
+use App\Models\Videojuego;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class VideojuegosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+
+    }
+    public function list()
+    {
+        return Videojuego::all();
+    }
+    public function show($id)
+    {
+        return Videojuego::find($id);
+    }
+   
+
+
+
     public function index()
     {
         //
@@ -45,11 +58,12 @@ class VideojuegosController extends Controller
      * @param  \App\Models\videojuegos  $videojuegos
      * @return \Illuminate\Http\Response
      */
-    public function show(videojuegos $videojuegos)
+    /*
+     public function show(videojuegos $videojuegos)
     {
         //
     }
-
+*/
     /**
      * Show the form for editing the specified resource.
      *

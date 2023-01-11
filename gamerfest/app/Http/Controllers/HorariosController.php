@@ -2,17 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\horarios;
-use App\Http\Requests\StorehorariosRequest;
-use App\Http\Requests\UpdatehorariosRequest;
+use Illuminate\Http\Request;
+use App\Models\Horario;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class HorariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+
+    }
+    public function list()
+    {
+        return Horario::all();
+    }
+
+    
+
+
+
+
+
     public function index()
     {
         //
